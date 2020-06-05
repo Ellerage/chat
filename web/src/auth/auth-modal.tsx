@@ -5,6 +5,10 @@ import { getApiUrl } from "../core/get-api-url"
 import { getToken } from "../core/get-token"
 import Cookies from "js-cookie"
 
+interface Props {
+  closeAuthModal: () => void
+}
+
 const Root = styled("div")`
   width: 100vw;
   height: 100vh;
@@ -31,7 +35,7 @@ const ToggleModal = styled("p")`
   cursor: pointer;
 `
 
-export const AuthModal = (): ReactElement => {
+export const AuthModal = ({ closeAuthModal }: Props): ReactElement => {
   const [isSignup, setAuthType] = useState(true)
 
   const [values, setValues] = useState({
@@ -72,7 +76,10 @@ export const AuthModal = (): ReactElement => {
         }),
       }).then((res) => res.json())
 
-      Cookies.set("token", token.accessToken)
+      if (token.accessToken) {
+        Cookies.set("token", token.accessToken)
+        closeAuthModal()
+      }
     }
   }
 
