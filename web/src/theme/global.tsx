@@ -3,4 +3,8 @@ import { normalize } from "styled-normalize"
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize};
+
+  body {
+    color: white;
+  }
 `
