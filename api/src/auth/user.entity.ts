@@ -19,7 +19,7 @@ export class User extends BaseEntity {
   @Column({ select: false })
   password: string;
 
-  @Column({ select: false })
+  @Column()
   salt: string;
 
   async validatePassword(password: string): Promise<boolean> {
