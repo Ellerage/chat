@@ -8,6 +8,7 @@ import {
 import { Server } from 'socket.io';
 import { MessageRepository } from 'src/messages/message.repository';
 import { CreateMessageDto } from 'src/messages/dto/create-message.dto';
+import { ValidationPipe, Body } from '@nestjs/common';
 
 @WebSocketGateway(8080, { namespace: 'api' })
 export class ChatGateway implements OnGatewayConnection {
@@ -22,7 +23,9 @@ export class ChatGateway implements OnGatewayConnection {
   }
 
   @SubscribeMessage('create')
-  async createMessage(@MessageBody() data: CreateMessageDto) {
+  async createMessage(
+    @Body(ValidationPipe) @MessageBody() data: CreateMessageDto,
+  ) {
     await this.messageRepository.createMessage(data);
 
     const messages = await this.messageRepository.find();
