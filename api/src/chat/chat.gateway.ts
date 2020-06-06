@@ -10,7 +10,7 @@ import { MessageRepository } from 'src/messages/message.repository';
 import { CreateMessageDto } from 'src/messages/dto/create-message.dto';
 import { ValidationPipe, Body } from '@nestjs/common';
 
-@WebSocketGateway(4000, { namespace: 'api' })
+@WebSocketGateway(4000, { namespace: 'ws' })
 export class ChatGateway implements OnGatewayConnection {
   constructor(private messageRepository: MessageRepository) {}
 
