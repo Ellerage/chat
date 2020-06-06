@@ -14,6 +14,5 @@ export const getUser = async (): Promise<any> => {
   ).json()
 
   const user = await data
-  console.log(user)
   return await user
 }

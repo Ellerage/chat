@@ -2,7 +2,7 @@ import React, { ReactElement, CSSProperties, ChangeEvent } from "react"
 import styled from "styled-components"
 
 interface Props {
-  label: string
+  label?: string
   value: string
   onChange: (value: string) => void
   style?: CSSProperties

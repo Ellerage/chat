@@ -1,8 +1,9 @@
 import React, { ReactElement, useState, useEffect } from "react"
 import styled from "styled-components"
 import { Message } from "./message"
-import socketIOClient from "socket.io-client"
-import { WSUrl } from "../core/get-api-url"
+import { WS } from "../core/socket"
+import { CreateMessage } from "./create-message"
+import { getUser } from "../core/get-user"
 
 const Root = styled("div")`
   background-color: #242442;
@@ -10,11 +11,12 @@ const Root = styled("div")`
 
 export const ChatPage = (): ReactElement => {
   const [messages, setMessages] = useState<any>([])
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
-    const socket = socketIOClient(WSUrl)
+    getUser().then((res) => setUser(res))
 
-    socket.on("init", (data: any) => {
+    WS.on("init", (data: any) => {
       setMessages(data)
     })
   }, [])
@@ -22,10 +24,12 @@ export const ChatPage = (): ReactElement => {
   return (
     <Root>
       {messages.map(
-        (message: any): ReactElement => (
-          <Message author={message.author} text={message.text} />
+        (message: any, index: number): ReactElement => (
+          <Message key={index} author={message.author} text={message.text} />
         ),
       )}
+
+      <CreateMessage user={user} />
     </Root>
   )
 }

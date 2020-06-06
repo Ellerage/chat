@@ -8,6 +8,7 @@ export const App = () => {
 
   const closeAuthModal = (): void => {
     setIsShowChat(true)
+    window.location.reload()
   }
 
   return (
