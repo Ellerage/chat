@@ -1,10 +1,15 @@
 import React, { ReactElement, useState } from "react"
 import { Input } from "../auth/input"
 import { WS } from "../core/socket"
+import styled from "styled-components"
 
 interface Props {
   user: { id: string; username: string } | null
 }
+
+const Root = styled("div")`
+  display: flex;
+`
 
 export const CreateMessage = ({ user }: Props): ReactElement => {
   const [value, setValue] = useState("")
@@ -19,12 +24,14 @@ export const CreateMessage = ({ user }: Props): ReactElement => {
       author: user.username,
       text: value,
     })
+
+    setValue("")
   }
 
   return (
-    <div>
+    <Root>
       <Input value={value} onChange={setValue} />
       <button onClick={handleCreateMessage}>Create</button>
-    </div>
+    </Root>
   )
 }

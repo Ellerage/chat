@@ -6,9 +6,25 @@ interface Props {
   text: string
 }
 
-const Root = styled("div")``
-const Author = styled("p")``
-const Text = styled("p")``
+const Root = styled("div")`
+  border: 1px solid grey;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding: 10px;
+`
+
+const Author = styled("p")`
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 20px;
+`
+
+const Text = styled("p")`
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-top: 15px;
+`
 
 export const Message = ({ author, text }: Props): ReactElement => (
   <Root>

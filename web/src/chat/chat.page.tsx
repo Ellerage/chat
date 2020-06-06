@@ -1,12 +1,13 @@
 import React, { ReactElement, useState, useEffect } from "react"
-import styled from "styled-components"
 import { Message } from "./message"
 import { WS } from "../core/socket"
 import { CreateMessage } from "./create-message"
 import { getUser } from "../core/get-user"
+import styled from "styled-components"
 
 const Root = styled("div")`
-  background-color: #242442;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
 export const ChatPage = (): ReactElement => {
