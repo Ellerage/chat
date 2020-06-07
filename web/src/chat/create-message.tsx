@@ -21,7 +21,7 @@ export const CreateMessage = ({ user }: Props): ReactElement => {
     }
 
     WS.emit("create", {
-      author: user.username,
+      authorId: user.id,
       text: value,
     })
 

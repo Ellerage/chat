@@ -1,8 +1,7 @@
 import { IsString, MinLength } from 'class-validator';
-import { User } from 'src/auth/user.entity';
 
-export class CreateMessageDto {
-  author: User;
+export class CreateMessageChatDto {
+  authorId: string;
 
   @IsString()
   @MinLength(1)

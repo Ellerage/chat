@@ -17,8 +17,8 @@ export const ChatPage = (): ReactElement => {
   useEffect(() => {
     getUser().then((res) => setUser(res))
 
-    WS.on("init", (data: any) => {
-      setMessages(data)
+    WS.on("init", (messages: any) => {
+      setMessages(messages)
     })
   }, [])
 
@@ -26,7 +26,11 @@ export const ChatPage = (): ReactElement => {
     <Root>
       {messages.map(
         (message: any, index: number): ReactElement => (
-          <Message key={index} author={message.author} text={message.text} />
+          <Message
+            key={index}
+            author={message.author.username}
+            text={message.text}
+          />
         ),
       )}
 
