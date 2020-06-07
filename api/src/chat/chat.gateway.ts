@@ -45,6 +45,9 @@ export class ChatGateway implements OnGatewayConnection {
       .createQueryBuilder('message')
       .leftJoinAndSelect('message.author', 'user');
 
-    return await query.getMany();
+    return (await query.getMany()).map(message => {
+      delete message.author.salt;
+      return message;
+    });
   }
 }
