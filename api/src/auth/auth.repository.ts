@@ -27,7 +27,6 @@ export class AuthRepository extends Repository<User> {
       if (error.code === '23505') {
         throw new ConflictException('User name already exist');
       } else {
-        console.log(error);
         throw new InternalServerErrorException();
       }
     }

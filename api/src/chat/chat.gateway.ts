@@ -33,7 +33,7 @@ export class ChatGateway implements OnGatewayConnection {
     @Body(ValidationPipe) @MessageBody() data: CreateMessageChatDto,
   ) {
     const author = await this.authRepository.findOne(data.authorId);
-    console.log(author);
+
     await this.messageRepository.createMessage({ author, text: data.text });
 
     const messages = await this.getMessages();
