@@ -6,7 +6,7 @@ const path = require("path")
 app.use(express.static(__dirname))
 
 app.get("/", function (req, res) {
-  response.writeHead(200, { "Content-Type": "text/html" })
+  res.writeHead(200, { "Content-Type": "text/html" })
 
   res.sendFile(path.join(__dirname, "index.html"))
 })
