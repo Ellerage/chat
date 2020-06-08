@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-@Controller('messages')
+@Controller('api/messages')
 export class MessagesController {
   @Get()
   async getMessages() {

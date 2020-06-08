@@ -13,7 +13,7 @@ import { DEFAULT_STRATEGY } from 'src/common/constants';
 import { CurrentUser } from './get-user-decorator';
 import { User } from './user.entity';
 
-@Controller('auth')
+@Controller('api/auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 

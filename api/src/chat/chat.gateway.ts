@@ -12,7 +12,7 @@ import { AuthRepository } from 'src/auth/auth.repository';
 import { Message } from 'src/messages/message.entity';
 import { CreateMessageChatDto } from './dto/create-message.dto';
 
-@WebSocketGateway()
+@WebSocketGateway(4000)
 export class ChatGateway implements OnGatewayConnection {
   constructor(
     private messageRepository: MessageRepository,
