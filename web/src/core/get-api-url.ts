@@ -1,5 +1,5 @@
 export const getApiUrl = (path: string): string => {
-  return `/api/${path}`
+  return `http://localhost:5000/api/${path}`
 }
 
-export const WSUrl = "http://172.31.32.80:4000"
+export const WSUrl = "http://localhost:4000"

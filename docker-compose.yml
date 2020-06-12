@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    build: .
+    build: ./api/
     depends_on:
       - postgres
     environment:
@@ -12,6 +12,13 @@ services:
     ports:
       - 5000:5000
       - 4000:4000
+
+  web:
+    build: ./web/
+    depends_on:
+      - api
+    ports:
+      - 3000:3000
 
   postgres:
     image: "postgres:11"
