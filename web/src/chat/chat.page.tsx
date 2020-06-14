@@ -2,9 +2,11 @@ import React, { ReactElement, useState, useEffect } from "react"
 import { Message } from "./message"
 import { WS } from "../core/socket"
 import { CreateMessage } from "./create-message"
-import { getUser } from "../core/get-user"
 import styled from "styled-components"
 import { Logout } from "./logout"
+import { getToken } from "../core/get-token"
+import { getApiUrl } from "../core/get-api-url"
+import Cookies from "js-cookie"
 
 export interface Message {
   id: string
@@ -25,7 +27,21 @@ export const ChatPage = (): ReactElement => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    getUser().then((res) => setUser(res))
+    fetch(getApiUrl("auth/me"), {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getToken(),
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.statusCode === 401) {
+          Cookies.remove("token")
+        }
+        setUser(response)
+      })
 
     WS.on("init", (messages: any) => {
       setMessages(messages)
