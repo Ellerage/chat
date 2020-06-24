@@ -33,6 +33,7 @@ export const ChatPage = (): ReactElement => {
       <Text style={styles.title}>Chat</Text>
 
       <FlatList
+        style={styles.list}
         data={messages}
         renderItem={({ item }) => <Message item={item} />}
         keyExtractor={(item: any) => item.id}
@@ -46,4 +47,7 @@ export const ChatPage = (): ReactElement => {
 const styles = StyleSheet.create({
   container: { paddingHorizontal: 20, paddingBottom: 20 },
   title: { fontWeight: "bold", fontSize: 32, paddingBottom: 15 },
+  list: {
+    height: "80%",
+  },
 })
