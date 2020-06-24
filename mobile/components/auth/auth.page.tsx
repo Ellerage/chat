@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from "react"
-import { View, StyleSheet, Text, Button } from "react-native"
+import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native"
 import { LabelInput } from "../ui/labled-input"
-import AsyncStorage from "@react-native-community/async-storage"
 import { getApiUrl } from "../core/get-api-url"
+import { tokenJwt } from "./token"
 
 interface Props {
   openChat: () => void
@@ -51,8 +51,7 @@ export const AuthPage = ({ openChat }: Props): ReactElement => {
     const data = await singIn(login, password)
 
     if (data.accessToken) {
-      await AsyncStorage.setItem("token", data.accessToken)
-
+      tokenJwt.value = data.accessToken
       openChat()
     }
   }
@@ -77,6 +76,15 @@ export const AuthPage = ({ openChat }: Props): ReactElement => {
         }
       />
 
+      {isSignUp && (
+        <TouchableOpacity
+          style={styles.haveAcc}
+          onPress={(): void => setIsSignUp(false)}
+        >
+          <Text>I already have account</Text>
+        </TouchableOpacity>
+      )}
+
       <Button title="Submit" onPress={handleSubmit} />
     </View>
   )
@@ -91,5 +99,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: "column",
     justifyContent: "space-between",
+  },
+  haveAcc: {
+    marginVertical: 15,
   },
 })
