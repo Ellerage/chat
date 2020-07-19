@@ -7,6 +7,7 @@ import { JwtStrategy } from './jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { EXPIRES_IN, DEFAULT_STRATEGY, SECRET } from 'src/common/constants';
+import { AuthResolver } from './auth.resolver';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { EXPIRES_IN, DEFAULT_STRATEGY, SECRET } from 'src/common/constants';
     TypeOrmModule.forFeature([AuthRepository]),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, AuthResolver],
   exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}

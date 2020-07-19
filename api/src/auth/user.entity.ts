@@ -8,13 +8,17 @@ import {
 } from 'typeorm';
 import { hash } from 'bcryptjs';
 import { Message } from 'src/messages/message.entity';
+import { ObjectType, Field } from '@nestjs/graphql';
 
 @Entity()
 @Unique(['username'])
+@ObjectType()
 export class User extends BaseEntity {
+  @Field()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Field()
   @Column()
   username: string;
 

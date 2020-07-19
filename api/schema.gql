@@ -1,0 +1,35 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: String!
+  username: String!
+}
+
+type ResultSingInPayload {
+  accessToken: String!
+}
+
+type Query {
+  """Just test query"""
+  test: Boolean!
+}
+
+type Mutation {
+  """Create new user"""
+  signUp(input: SignUpInput!): Boolean!
+
+  """Log in and get access token"""
+  signIn(input: SignInInput!): ResultSingInPayload!
+}
+
+input SignUpInput {
+  username: String!
+  password: String!
+}
+
+input SignInInput {
+  username: String!
+  password: String!
+}

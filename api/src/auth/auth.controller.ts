@@ -6,7 +6,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ResultSignIn } from './dto/result-signin';
+import { ResultSingInPayload } from './dto/result-sign-in';
 import { AuthCredentialsDto } from './dto/auth.credentials.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { DEFAULT_STRATEGY } from 'src/common/constants';
@@ -27,7 +27,7 @@ export class AuthController {
   @Post('/signin')
   signIn(
     @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto,
-  ): Promise<ResultSignIn> {
+  ): Promise<ResultSingInPayload> {
     return this.authService.signIn(authCredentialsDto);
   }
 
