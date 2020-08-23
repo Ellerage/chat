@@ -1,6 +1,7 @@
-demo http://ec2-54-93-217-204.eu-central-1.compute.amazonaws.com/
+# DEVELOP
 
-# PROD
-/ `docker-compose up -d` - run all images
+Start database `docker-compose up -d`
 
-/mobile `expo build:android` - build mobile
+Start api in api folder `yarn start:dev`
+
+Start web in web folder `yarn start`

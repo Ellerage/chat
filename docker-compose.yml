@@ -1,25 +1,5 @@
 version: "3"
 services:
-  api:
-    build: ./api/
-    depends_on:
-      - postgres
-    environment:
-      DB_HOST: postgres
-      DB_USER: postgres
-      DB_PASS: 214470
-      DB_DATABASE: "chat"
-    ports:
-      - 5000:5000
-      - 4000:4000
-
-  web:
-    build: ./web/
-    depends_on:
-      - api
-    ports:
-      - 3000:3000
-
   postgres:
     image: "postgres:11"
     ports:
